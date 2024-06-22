@@ -62,7 +62,7 @@ export const signin = async (req, res, next) => {
 // get all customers
 export const getCustomers = async (req, res, next) => {
     try {
-        const getCustomers = await db.collection('customers').find().toArray()
+        const getCustomers = await db.collection('customers').find({projection:{password:0}}).toArray()
         return res.status(200).json({ data: getCustomers, success: true })
     } catch (err) {
         return res.status(500).json({ message: err.message, success: false })
